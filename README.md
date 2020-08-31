@@ -26,10 +26,15 @@ Be sure that in MainFunction the package is set to match the name of the folder 
 The main functions argument are 5 and the following :
 
 args[0] is integer with values  0 or 1 . 0 if you run the code on data, 1 if you run it on MC
+
 args[1] is integer with values 0 or 1 . If 0 it runs on all the statistics, if 1 it run on a sub sample of 2M events used to debug.
+
 args[2] ia a string, containing the path to the file to be used 
+
 args[3] is a string containing the ouput directory of the analysis (be sure to to make it before running the code otherwise it will not save anything)
+
 args[4] is an integer 0,1,2,3,4,5 . With the following menaings : 0 run the code with 1D binning in Q2. 1 run the code with 1D binning in xB. 2 run the code with 1D binning in z, 3 run the code with 1D binning in Pt, 4 run the code with 9 binning in XB and Q2 integrating z, 5 run the cude multidimensionally (9 bins in xB and Q2 and 7 bins in z and 7 bins in PT)
+
 
 OUTPUT OF THE CODE:
 
@@ -53,7 +58,15 @@ The class map will map that bin into an index i, j for the array. be sure that y
 
 The Class AnalysisSIDIS.java deal with filling those bins for all the relevant infromation and later save on an hipo files.
 
-In order to enhance the Particle class, a ParticleREC.java class has been created. This class will add to the particle the Traj and Calorimeter banks so to be passed to the Fiducial cuts routine.
+In order to enhance the Particle class,a ParticleREC.java class has been created. This class will add to the particle the Traj and Calorimeter banks so to be passed to the Fiducial cuts routine.
+
+A class Photons is used to define good photons based on his internal cuts. 
+
+THe charged hadrons are built using two classes: ChargedParticle, that read a ParticleREC and define the properites of that hadron by computing Phi Trento ,Z , PT, pseudorapidity (not working yet) 
+
+Pi0 are created using: Pi0_Particle that take the Photons class and performe the combination of photons to provide the pi0. Several fitting procedures are available but only one has been implemented in the current status.
+
+
 
 Fiducial Cuts:
 The fiducial cuts are created trough the usage of a MAP. The MAP is created with a key tha tis the PID and a list of cuts that are going to be activated for that PID. For exampole now for PID 11 there are 3 cuts activated : Sampling Fraction, PCAL, DC. While for pid 211 only DC.  This is the standard implementation of the class but an user ca modify this map of cuts as wish , adding and removing particles or detectors cuts or adding a new .java file containing a new cut. The new cut should be written as " impements DetectorCut" so to inherit all the right properties.
