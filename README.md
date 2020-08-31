@@ -1,4 +1,7 @@
 # CLAS12_Analysis_BSA_Counts
+
+
+TO RUN THE CODE: 
 Copy it on the ifarm.
 Go on Ifarm  where the MainFunction is and to compile it run javac:
 
@@ -28,3 +31,13 @@ args[2] ia a string, containing the path to the file to be used
 args[3] is a string containing the ouput directory of the analysis (be sure to to make it before running the code otherwise it will not save anything)
 args[4] is an integer 0,1,2,3,4,5 . With the following menaings : 0 run the code with 1D binning in Q2. 1 run the code with 1D binning in xB. 2 run the code with 1D binning in z, 3 run the code with 1D binning in Pt, 4 run the code with 9 binning in XB and Q2 integrating z, 5 run the cude multidimensionally (9 bins in xB and Q2 and 7 bins in z and 7 bins in PT)
 
+OUTPUT OF THE CODE:
+
+The code will return a folder called Multibins divided in as many folders as the Q2  bins with subfloder equal to the xB bins.
+Inside each folder a summary of the number of pions find for Z and PT bins (txt) as well as home hipo files.
+These hipo files contains histograms of counts for the number of electrons, the helicity counts vs phi, the total counts of pions for each Z and PT bin, as well as the kinematic distributions inside the Z and PT bin. 
+They are the following.
+
+If you want to read them do the following: 
+
+An example for the extraction of the BSA code appleid on this output is in the subfloder: BSA Analysis Code. 
