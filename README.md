@@ -41,3 +41,26 @@ They are the following.
 If you want to read them do the following: 
 
 An example for the extraction of the BSA code appleid on this output is in the subfloder: BSA Analysis Code. 
+
+
+
+===== Analysis Code explanation ====
+
+The code define MultiBins object, these objects are double arrays of H1F, H2F or H3F, allowing to have a 5D binning. 
+The first two variables are stored in array sand their allocation can be done using constand bin size, as well as defiying custommade polynomial bins shapes using the subrutine: PolyogonalBins in the MultiBins.java file . They have been set to match the Stefan's Diehl binning for BSA analysis but can be modified .
+When you define a bin you need to privde the points in counter clock wise manner starting from the top right corner of the polygon.  
+The class map will map that bin into an index i, j for the array. be sure that you modify that too.
+
+The Class AnalysisSIDIS.java deal with filling those bins for all the relevant infromation and later save on an hipo files.
+
+In order to enhance the Particle class, a ParticleREC.java class has been created. This class will add to the particle the Traj and Calorimeter banks so to be passed to the Fiducial cuts routine.
+
+Fiducial Cuts:
+The fiducial cuts are created trough the usage of a MAP. The MAP is created with a key tha tis the PID and a list of cuts that are going to be activated for that PID. For exampole now for PID 11 there are 3 cuts activated : Sampling Fraction, PCAL, DC. While for pid 211 only DC.  This is the standard implementation of the class but an user ca modify this map of cuts as wish , adding and removing particles or detectors cuts or adding a new .java file containing a new cut. The new cut should be written as " impements DetectorCut" so to inherit all the right properties.
+
+The function Status loop over the  MAP and return the status of each detector cut  by invoking each detector status class.  If all of them are true it will return true for that PID, meaning that particle has passed all associated cuts. If at least one is false will return false and therefore the particle do not pass fiducial cuts. In this way every detector (DC.java, EC.java, SamplingFraction.java )  will apply their routiine to the PID and return the status : true false that is being read by the main Fiducial Class.
+
+
+
+
+
