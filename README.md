@@ -2,7 +2,7 @@
 
 The GoodAnalysis folder contains the java code for the analysis and an explanation on how to compile - run . 
 The results are hipo files containing histograms of interest.
-The code: BSA_CrossCheck_2020.java reads the histograms and fit the counts to produce BSA and FF_{LU}/F_{UU}
+The code: BSA_CrossCheck_2020.java reads these histograms and fit the counts to produce BSA and FF_{LU}/F_{UU}
 
 
 The zip file: Results 
